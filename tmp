@@ -1,0 +1,11 @@
+jupyter_client             
+jupyter-console            
+jupyter_core               
+jupyter-events             
+jupyter-lsp                
+jupyter_server             
+jupyter_server_terminals   
+jupyterlab                 
+jupyterlab-pygments        
+jupyterlab_server          
+jupyterlab-widgets         
