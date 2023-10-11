@@ -1,7 +1,6 @@
 # Plotting functions
 import matplotlib.pyplot as plt
 import numpy as np
-from typing import List
 
 def plotVS(plot_x, plot_f1, plot_f2, title: str = None, xlabel: str = None, ylabel: str = None, f1Label: str = None, f2Label: str = None):
     """Plots two functions against each other.
