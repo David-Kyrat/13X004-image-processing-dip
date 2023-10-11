@@ -1,3 +1,14 @@
+---
+tags:
+  - ba5
+  - improc
+  - numpy
+  - cheatsheet
+class: improc
+url: https://moodle.unige.ch/course/view.php?id=2291
+description: idiomatic and useful numpy / data science stuff
+---
+
 # Numpy Quick Notes & tips
 
 ## Slicing - 1 liner to modify whole image / tensor (n x m x 3)
@@ -83,12 +94,9 @@ test[:, :, 2]
     [[3 0]
      [3 3]
      [3 2]]
-
-
+     
     array([3.        , 1.66666667])
     ```
-
-<br>
 
 2. 
     ```python
@@ -104,8 +112,6 @@ test[:, :, 2]
      array([0. , 1.5, 1.5])
     ```
 
-
-<br>
 
 3. 
     ```python
@@ -133,7 +139,6 @@ test[:, :, 2]
 
     ```
 
-<br>
 
 4. 
     ```python
@@ -156,7 +161,6 @@ test[:, :, 2]
            [2.33333333, 2.        , 2.33333333]])
     ```
 
-<br>
 
 5. 
     ```python
@@ -164,21 +168,25 @@ test[:, :, 2]
     a.mean(2) # mean for lignes internes because there 3 mean component (1 for each elem, 3 times 2 pixel/vector)
     ```
 
-Mean of each element. If each element is a pixel i.e. 3 vector => mean of that vector / pixel for each coordinate
+> [!HINT]
+> Mean of each element. If each element is a pixel i.e. 3 vector => mean of that vector / pixel for each entry in "2d matrix" of pixel.
+> i.e. 3D matrix => 2D matrix where each pixel is replaced by the mean of its rgb component.
 
-    ```Python
-    (3, 2, 3)
-    [[[2 2 2]
-      [0 2 0]]
 
-     [[2 1 0]
-      [0 1 2]]
 
-     [[0 2 0]
-      [1 1 0]]]
+```python
+(3, 2, 3)
+[[[2 2 2]
+  [0 2 0]]
 
-    array(
-      [[2.        , 0.66666667],
-       [1.        , 1.        ],
-       [0.66666667, 0.66666667]])
-    ```
+ [[2 1 0]
+  [0 1 2]]
+
+ [[0 2 0]
+  [1 1 0]]]
+
+array(
+  [[2.        , 0.66666667],
+   [1.        , 1.        ],
+   [0.66666667, 0.66666667]])
+```
