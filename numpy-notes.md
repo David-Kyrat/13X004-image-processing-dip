@@ -68,3 +68,117 @@ test[:, :, 2]
        [200., 200., 200., 200., 200.]])
 ```
 
+## Mean
+
+
+1. 
+    ```python
+    a = np.random.randint(4, size=(3, 2))
+    print(a)
+    a.mean(0) # mean for cols because there 2 mean component (1 for each col)
+    ```
+
+
+    ```Python
+    [[3 0]
+     [3 3]
+     [3 2]]
+
+
+    array([3.        , 1.66666667])
+    ```
+
+<br>
+
+2. 
+    ```python
+    a.mean(1) # mean for rows because there 3 mean component (1 for each row)
+    ```
+
+
+    ```Python
+    [[3 0]
+     [3 3]
+     [3 2]]
+
+     array([0. , 1.5, 1.5])
+    ```
+
+
+<br>
+
+3. 
+    ```python
+    a = np.random.randint(4, size=(3, 2, 3))
+    print(a)
+    a.mean(1) # mean for rows because there 3 mean component (1 for each row, 3 rows)
+    ```
+
+
+    ```Python
+    [[[3 1 2]
+      [2 3 0]]
+
+     [[2 2 3]
+      [1 2 1]]
+
+     [[0 0 2]
+      [2 3 2]]]
+     
+
+    array(
+      [[2.5, 2. , 1. ],
+       [1.5, 2. , 2. ],
+       [1. , 1.5, 2. ]])
+
+    ```
+
+<br>
+
+4. 
+    ```python
+    a.mean(0) # mean for cols because there 2 mean component (1 for each col, 2 cols)
+    ```
+
+
+    ```Python
+    [[[3 1 2]
+      [2 3 0]]
+
+     [[2 2 3]
+      [1 2 1]]
+
+     [[0 0 2]
+      [2 3 2]]]
+
+
+    array([[2.33333333, 1.        , 1.        ],
+           [2.33333333, 2.        , 2.33333333]])
+    ```
+
+<br>
+
+5. 
+    ```python
+    print(a.shape)
+    a.mean(2) # mean for lignes internes because there 3 mean component (1 for each elem, 3 times 2 pixel/vector)
+    ```
+
+Mean of each element. If each element is a pixel i.e. 3 vector => mean of that vector / pixel for each coordinate
+
+    ```Python
+    (3, 2, 3)
+    [[[2 2 2]
+      [0 2 0]]
+
+     [[2 1 0]
+      [0 1 2]]
+
+     [[0 2 0]
+      [1 1 0]]]
+
+    array(
+      [[2.        , 0.66666667],
+       [1.        , 1.        ],
+       [0.66666667, 0.66666667]])
+    ```
