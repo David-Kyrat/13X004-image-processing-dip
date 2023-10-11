@@ -79,10 +79,10 @@ test[:, :, 2]
        [200., 200., 200., 200., 200.]])
 ```
 
-## Mean
+## Mean - Sort
 
 
-1. 
+1.  **Cols**
     ```python
     a = np.random.randint(4, size=(3, 2))
     print(a)
@@ -98,7 +98,7 @@ test[:, :, 2]
     array([3.        , 1.66666667])
     ```
 
-2. 
+2. **Rows**
     ```python
     a.mean(1) # mean for rows because there 3 mean component (1 for each row)
     ```
@@ -113,7 +113,7 @@ test[:, :, 2]
     ```
 
 
-3. 
+3.  **3D**
     ```python
     a = np.random.randint(4, size=(3, 2, 3))
     print(a)
@@ -144,7 +144,6 @@ test[:, :, 2]
     ```python
     a.mean(0) # mean for cols because there 2 mean component (1 for each col, 2 cols)
     ```
-
 
     ```Python
     [[[3 1 2]
