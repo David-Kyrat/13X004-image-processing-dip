@@ -189,3 +189,122 @@ array(
    [1.        , 1.        ],
    [0.66666667, 0.66666667]])
 ```
+
+# Np.stack
+
+# TODO!
+
+arrays = [np.random.randint(0, 3, (3, 4)) for _ in range(2)]
+assert np.array([res[0,0], res[1,0]]).all() == res[:,0].all()
+print(arrays)
+print("------")
+res = np.stack(arrays, 2)
+print(res.shape)
+print(res, "\n\n")
+print(res[:,0])
+
+[array([[1, 0, 1, 2],
+       [2, 1, 2, 2],
+       [2, 2, 0, 2]]), array([[0, 0, 1, 1],
+       [1, 1, 0, 1],
+       [0, 0, 0, 2]])]
+------
+(3, 4, 2)
+[[[1 0]
+  [0 0]
+  [1 1]
+  [2 1]]
+
+ [[2 1]
+  [1 1]
+  [2 0]
+  [2 1]]
+
+ [[2 0]
+  [2 0]
+  [0 0]
+  [2 2]]] 
+
+
+[[1 0]
+ [2 1]
+ [2 0]]
+
+
+----
+
+stack 1
+
+
+[array([[1, 1, 1, 2],
+       [1, 1, 1, 2],
+       [1, 2, 2, 0]]), array([[0, 1, 0, 0],
+       [1, 1, 0, 1],
+       [2, 0, 1, 2]])]
+------
+(3, 2, 4)
+[[[1 1 1 2]
+  [0 1 0 0]]
+
+ [[1 1 1 2]
+  [1 1 0 1]]
+
+ [[1 2 2 0]
+  [2 0 1 2]]] 
+
+
+[[1 1 1 2]
+ [1 1 1 2]
+ [1 2 2 0]]
+
+
+ ----
+
+
+ stack 0 
+
+
+ array([[1, 1, 1, 0],
+       [0, 2, 2, 0],
+       [2, 2, 1, 2]]), array([[1, 0, 1, 0],
+       [2, 0, 0, 2],
+       [2, 1, 0, 2]])]
+------
+(2, 3, 4)
+[[[1 1 1 0]
+  [0 2 2 0]
+  [2 2 1 2]]
+
+ [[1 0 1 0]
+  [2 0 0 2]
+  [2 1 0 2]]] 
+
+
+[[1 1 1 0]
+ [1 0 1 0]]
+
+
+# comment ^^ and format / rewrite this
+
+list of matrix => each row of matrix became an element of the bigger tensor containing the 2 mat. I.e. "concatenate according to row"
+row 1 = mat1
+Row 2 = mat2
+col
+
+***
+
+For axis = 1 =>  
+(3,4)=> (3,2,4)
+3 rows 4 cols => 3 rows 2 cols 4 depth
+Cols of 3d is array of rows of inner 2d.
+
+Splits the 2d 3x4 matrix into 3 lines of 2x4 matrix.  
+=> take =>  
+=> [1st row of mat 1, 1st row of mat 2]  
+=> [2nd row of mat 1, 2nd row of mat 2]  
+=> [3rd row of mat 1, 3rd row of mat 2]
+
+**Always takes first $k$ value of each matrix in array. Where $k$ is the value of the n-th dimension when calling `np.stack(axis=n)`. It _will_ split the original matrices**
+
+
+
