@@ -9,9 +9,22 @@ url: https://moodle.unige.ch/course/view.php?id=2291
 description: idiomatic and useful numpy / data science stuff
 ---
 
+<!--toc:start-->
+- [Numpy Quick Notes & tips](#numpy-quick-notes-tips)
+  - [Slicing](#slicing)
+    - [1 – 1 liner to modify whole image / tensor (n x m x 3)](#1-1-liner-to-modify-whole-image-tensor-n-x-m-x-3)
+    - [2 — Conditional Slicing](#2-conditional-slicing)
+  - [Mean — Sort](#mean-sort)
+  - [Np.stack](#npstack)
+<!--toc:end-->
+
 # Numpy Quick Notes & tips
 
-## Slicing - 1 liner to modify whole image / tensor (n x m x 3)
+
+
+## Slicing 
+
+### 1 – 1 liner to modify whole image / tensor (n x m x 3)
 
 
 ```python
@@ -79,7 +92,82 @@ test[:, :, 2]
        [200., 200., 200., 200., 200.]])
 ```
 
-## Mean - Sort
+<br>
+
+### 2 — Conditional Slicing
+
+Look at this black magic of a python code:
+
+```python
+def add_salt_and_pepper(im_input: np.ndarray, proba: float) -> np.ndarray:
+    img = np.array(im_input) # copy input
+    rnd = np.random.rand(img.shape[0], img.shape[1])
+    img[rnd < proba/ 2] = 0
+    img[rnd > 1 - proba/ 2] = 1
+    return img
+```
+
+- **Explanation**:
+
+    1. `img = np.array(im_input)`: This line creates a copy of the input image using NumPy's array function. It ensures that the original image (im_input) is not modified directly.
+
+    2. `rnd = np.random.rand(img.shape[0], img.shape[1])`: This line generates a random matrix (rnd) with the same dimensions as the input image. The values in this matrix are uniformly distributed random numbers between 0 and 1.
+
+    3. `img[rnd < proba / 2] = 0`: Here, pixels in the image are set to 0 (black) where the corresponding values in the random matrix (rnd) are less than proba / 2. The condition rnd < proba / 2 ensures that only a fraction (proba / 2) of the pixels are affected, introducing "pepper" noise.
+
+    4. `img[rnd > 1 - proba / 2] = 1`: Similarly, pixels in the image are set to 1 (white) where the corresponding values in the random matrix are greater than 1 - proba / 2. This introduces "salt" noise.
+
+    The modified image is returned.
+
+    The proba parameter controls the intensity of the noise. The higher the proba, the more intense the salt and pepper noise will be. If you have any specific questions or need further clarification, feel free to ask!
+
+- **Further expl of why the `img[rnd< proba / 2]` and `img[rnd > 1 - proba / 2]`**
+
+
+    1. `rnd < proba / 2`: This creates a boolean mask with the same shape as `img`. The values in this mask are `True` where the corresponding values in the `rnd` matrix are less than `proba / 2` and `False` otherwise. This mask effectively identifies a subset of pixels in the image.
+
+    2. `img[rnd < proba / 2] = 0`: Using the boolean mask, this line modifies the values of the `img` array only at the positions where the mask is `True`. Specifically, it sets those pixel values to 0.
+
+    The rationale behind this operation is to introduce "pepper" noise to the image. The condition `rnd < proba / 2` is determining which pixels should be affected by the noise. Since `rnd` contains random values between 0 and 1, the condition is true for a fraction of pixels determined by the value of `proba / 2`. If `proba` is 0.1, for example, it means that approximately 10% of the pixels will be affected.
+
+    In other words, this line of code randomly selects a subset of pixels in the image and sets their values to 0, creating dark spots (pepper) in the image. The randomness is introduced by the random values in the `rnd` matrix, and the intensity of the noise is controlled by the `proba` parameter.
+
+    - **Example** 
+        1. `proba = 0.5`
+        ```python
+        rnd < proba / 2 
+        rnd < 0.25 
+
+        rnd > 1-proba/2 
+        rnd > 1- 0.25 = 0.75
+        rnd > 0.75
+
+        ```
+
+        value greater than 0.75 and below 0.25
+        get replaced => 25% + 25% = 50% ok
+
+        2. `proba = 0.4`
+        ```python
+        rnd < proba / 2
+        rnd < 0.2
+        
+        rnd > 1 - proba / 2
+        rnd > 1 - 0.2
+        rnd > 0.8
+
+        0.8 - 0.2 = 0.6 => left untouched => 0.4 replaced
+        ```
+        amount of values that get replaced in `img` is
+        random values of `rnd` in [0, 0.2]  $\cup$ [0.8, 1]
+        => 0.2 + 0.2 = 0.4 ok
+
+
+***
+
+<br>
+
+## Mean — Sort
 
 
 1.  **Cols**
@@ -190,7 +278,11 @@ array(
    [0.66666667, 0.66666667]])
 ```
 
-# Np.stack
+***
+
+<br>
+
+## Np.stack
 
 # TODO!
 
@@ -305,6 +397,5 @@ Splits the 2d 3x4 matrix into 3 lines of 2x4 matrix.
 => [3rd row of mat 1, 3rd row of mat 2]
 
 **Always takes first $k$ value of each matrix in array. Where $k$ is the value of the n-th dimension when calling `np.stack(axis=n)`. It _will_ split the original matrices**
-
 
 
