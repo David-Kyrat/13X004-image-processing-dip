@@ -11,7 +11,25 @@
 
 ## Exercice 2
 
-2.a : il est possible de mieux faire pour ne pas avoir des traits verticaux
+2.a : il est possible de mieux faire pour ne pas avoir des traits verticaux  
+
+But était de faire un gradient de `uint8` black to white de $125 \times 500$.
+
+```python
+    np.linspace(start=0, stop=255, num=500) # only one line use np.repeat to get 125 other
+    a = np.linspace(start=0, stop=255, num=500)
+    b = np.repeat(a, 125, axis=0)
+    c = np.reshape(np.repeat(a, 125, axis=0), (125, 500))
+    print(b.shape)
+    print(c.shape)
+```
+
+```python
+(62500,)
+(125, 500)
+```
+
+
 2.d : pareil
 
 ## Exercice 5
