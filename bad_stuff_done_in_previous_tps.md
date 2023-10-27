@@ -16,12 +16,15 @@
 
 ## Exercice 5
 
-5.c) Using a binomial with n = 1 is the same as using a Bernoulli distribution. (function np.random.choice() )
+5.c) Using a binomial with n = 1 is the same as using a Bernoulli distribution. (`function np.random.choice()` )
 
-Your result only adds salt to the image (or pepper, depending on your luck)
+- **np.random.choice()** is the function for Bernoulli distrib.
+
+
+- Your result only adds salt to the image (or pepper, depending on your luck)
 This is because of the line :
 
-img[mask] = gen_salt_or_paper()
+        img[mask] = gen_salt_or_paper()
 
 * on the left-hand-side, you correctly selected all pixels that you want to modify
 * on the right-hand-side, your function returns a single number.
