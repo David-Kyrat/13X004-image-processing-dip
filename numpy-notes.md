@@ -16,6 +16,7 @@ description: idiomatic and useful numpy / data science stuff
     - [2 — Conditional Slicing](#2-conditional-slicing)
   - [Mean — Sort](#mean-sort)
   - [Np.stack](#npstack)
+- [Matplotlib](#matplotlib)
 <!--toc:end-->
 
 # Numpy Quick Notes & tips
@@ -284,7 +285,7 @@ array(
 
 ## Np.stack
 
-# TODO!
+### TODO!
 
 arrays = [np.random.randint(0, 3, (3, 4)) for _ in range(2)]
 assert np.array([res[0,0], res[1,0]]).all() == res[:,0].all()
@@ -376,7 +377,7 @@ stack 1
  [1 0 1 0]]
 
 
-# comment ^^ and format / rewrite this
+### comment ^^ and format / rewrite this
 
 list of matrix => each row of matrix became an element of the bigger tensor containing the 2 mat. I.e. "concatenate according to row"
 row 1 = mat1
@@ -398,4 +399,11 @@ Splits the 2d 3x4 matrix into 3 lines of 2x4 matrix.
 
 **Always takes first $k$ value of each matrix in array. Where $k$ is the value of the n-th dimension when calling `np.stack(axis=n)`. It _will_ split the original matrices**
 
+***
 
+<br />
+
+# Matplotlib
+
+
+- Use `plt.stem()`, instead of `plt.plot()` in some case its nice

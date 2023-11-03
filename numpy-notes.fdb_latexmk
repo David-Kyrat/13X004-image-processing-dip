@@ -1,0 +1,12 @@
+# Fdb version 4
+["pdflatex"] 1699016095 "/home/noahl/Documents/ba5/image-proc-13X004/TPs/numpy-notes.md" "numpy-notes.pdf" "numpy-notes" 1699016096 2
+  "/home/noahl/Documents/ba5/image-proc-13X004/TPs/numpy-notes.md" 1699016095 9817 5ad473f3964ddd3a82953d5b1f6eb527 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1684972800 40326 aba987258e6d6b6da5dec3a727ea174b ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1697651498 7874798 6f1f1f41ebe978dfe5c6ecc57581a48b ""
+  "numpy-notes.aux" 1699016014 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "numpy-notes.md" 1699016095 9817 5ad473f3964ddd3a82953d5b1f6eb527 ""
+  (generated)
+  "numpy-notes.aux"
+  "numpy-notes.log"
+  "numpy-notes.pdf"
+  (rewritten before read)
