@@ -486,6 +486,12 @@ grad_col[:, :, 1] = 0
 grad_col[:, :, 2] = 255 - grad_col[:, :, 0]
 ```
 
+Which gives:
+
+![gradient](./gradient_blue_to_red.png) 
+
+
+
 ***
 
 <br />
