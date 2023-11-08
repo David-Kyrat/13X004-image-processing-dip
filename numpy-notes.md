@@ -16,6 +16,27 @@ description: idiomatic and useful numpy / data science stuff
     - [2 — Conditional Slicing](#2-conditional-slicing)
   - [Mean — Sort](#mean-sort)
   - [Np.stack](#npstack)
+    - [TODO!](#todo)
+  - [[array([[1, 0, 1, 2],
+       [2, 1, 2, 2],
+       [2, 2, 0, 2]]), array([[0, 0, 1, 1],
+       [1, 1, 0, 1],
+       [0, 0, 0, 2]])]
+------](#array1-0-1-2-2-1-2-2-2-2-0-2-array0-0-1-1-1-1-0-1-0-0-0-2)
+  - [[array([[1, 1, 1, 2],
+       [1, 1, 1, 2],
+       [1, 2, 2, 0]]), array([[0, 1, 0, 0],
+       [1, 1, 0, 1],
+       [2, 0, 1, 2]])]
+------](#array1-1-1-2-1-1-1-2-1-2-2-0-array0-1-0-0-1-1-0-1-2-0-1-2)
+  - [array([[1, 1, 1, 0],
+       [0, 2, 2, 0],
+       [2, 2, 1, 2]]), array([[1, 0, 1, 0],
+       [2, 0, 0, 2],
+       [2, 1, 0, 2]])]
+------](#array1-1-1-0-0-2-2-0-2-2-1-2-array1-0-1-0-2-0-0-2-2-1-0-2)
+    - [comment ^^ and format / rewrite this](#comment-and-format-rewrite-this)
+  - [Tile](#tile)
 - [Matplotlib](#matplotlib)
 <!--toc:end-->
 
@@ -398,6 +419,60 @@ Splits the 2d 3x4 matrix into 3 lines of 2x4 matrix.
 => [3rd row of mat 1, 3rd row of mat 2]
 
 **Always takes first $k$ value of each matrix in array. Where $k$ is the value of the n-th dimension when calling `np.stack(axis=n)`. It _will_ split the original matrices**
+
+
+<br />
+
+
+## Tile
+
+Repeat input matrix on a given axis (matrix may need to be broadened with smth like `mat[:,:, np.newaxis]` to pass from 2D to 3D)
+
+```python
+gd = np.tile(np.linspace(0, 255, 500, dtype=u8), (125, 1))
+
+# adds third axis and asks to "repeat current matrix" 3 times along that axis
+# i.e. 3 layer of current matrix ==> tensor of shape (125, 500, 3)
+grad_col = np.tile(gd[:,:,np.newaxis], (1, 3))
+print(grad_col[:,:,0])
+
+imshow(grad_col)
+```
+
+
+```python
+gd = np.tile(np.linspace(0, 255, 500, dtype=u8), (125, 1))
+grad_col = np.tile(gd[:,:,np.newaxis], (1, 3))
+
+```
+
+
+Is equivalent to 
+
+```python
+gd = gray_scale
+gd2 = deepcopy(gd)
+gd3 = deepcopy(gd)
+grad_col = np.stack([gd, gd2, gd3], -1)  # full "gradient"
+imshow(grad_col)
+```
+
+gray_scale is a $125\times500$ matrix of $[0, 1, 2, ...., 255]$
+
+both make a grayscale like so:
+
+![grayscale](tp01/images/grad.png)
+
+(We made a grayscale with "full" pixels i.e. 3D tensor even tho we could have just used) 
+```python
+linear_gradient = np.tile(np.linspace(0, 255, 500, dtype=u8), (125, 1))  # (1, 500) matrix
+plt.imshow(linear_gradient, aspect="auto", cmap="gray")
+```
+
+<br />
+
+What's useful with that is that we can convert it to a colored grayscale by just setting 2 of the 3 channel to 0.
+(Since we have 3 channels with components from 0 to 255)
 
 ***
 
