@@ -428,6 +428,7 @@ Splits the 2d 3x4 matrix into 3 lines of 2x4 matrix.
 
 Repeat input matrix on a given axis (matrix may need to be broadened with smth like `mat[:,:, np.newaxis]` to pass from 2D to 3D)
 
+We used it like this in tp01:
 ```python
 gd = np.tile(np.linspace(0, 255, 500, dtype=u8), (125, 1))
 
@@ -439,29 +440,32 @@ print(grad_col[:,:,0])
 imshow(grad_col)
 ```
 
-
-```python
-gd = np.tile(np.linspace(0, 255, 500, dtype=u8), (125, 1))
-grad_col = np.tile(gd[:,:,np.newaxis], (1, 3))
-
-```
-
-
-Is equivalent to 
-
+Using tile is stonks because before we used this
 ```python
 gd = gray_scale
 gd2 = deepcopy(gd)
 gd3 = deepcopy(gd)
 grad_col = np.stack([gd, gd2, gd3], -1)  # full "gradient"
-imshow(grad_col)
 ```
 
-gray_scale is a $125\times500$ matrix of $[0, 1, 2, ...., 255]$
+But it can be reduce to
 
-both make a grayscale like so:
+```python
+grad_col = np.tile(gd[:, :, np.newaxis], (1, 3))
+```
+We duplicate given matrix 3 new times and "lines them in depth" to make a block of 3 matrix (1 for red, 1 for green 1 for blue => our tensor)
 
-![grayscale](tp01/images/grad.png)
+![tensor_expl](tensor_expl.png)
+
+(except that on this image on the right we have a block of 4 and not 3)
+
+NB: `grad_col[:,:, 0]` makes us access the 1st matrix "in front" (i.e. red components) and `grad_col[:,:, 2]` the 3rd, last, i.e. blue
+
+- gray_scale is a $125\times500$ matrix of $[0, 1, 2, ...., 255]$
+
+- Both make a grayscale like so:
+
+- ![grayscale](tp01/images/grad.png)
 
 (We made a grayscale with "full" pixels i.e. 3D tensor even tho we could have just used) 
 ```python
@@ -473,6 +477,14 @@ plt.imshow(linear_gradient, aspect="auto", cmap="gray")
 
 What's useful with that is that we can convert it to a colored grayscale by just setting 2 of the 3 channel to 0.
 (Since we have 3 channels with components from 0 to 255)
+
+```Python
+# shut off green cmp
+grad_col[:, :, 1] = 0
+
+# Reverse blue cmp to be 255 -> 0 instead of 0 -> 255 (i.e. Start at full blue end at full red)
+grad_col[:, :, 2] = 255 - grad_col[:, :, 0]
+```
 
 ***
 
