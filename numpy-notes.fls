@@ -1,6 +1,0 @@
-PWD /home/noahl/Documents/ba5/image-proc-13X004/TPs
-INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
-INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/noahl/Documents/ba5/image-proc-13X004/TPs/numpy-notes.md
-OUTPUT numpy-notes.log
