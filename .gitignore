@@ -3,3 +3,9 @@
 **/*.ipynb_checkpoints
 *.zip
 **/.idea
+
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.gz
