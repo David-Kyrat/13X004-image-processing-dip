@@ -61,6 +61,11 @@ Code ok, mais il ya un autre problème:;
 mse = np.mean((img1 - img2)**2)
 psnr = 10* np.log(img.max() / mse)
 ```
-- Problème si img1 et img2 sont pas les 2 dans [0, 1] ou les 2 dans [| 0, 255 |]
-- <span style="color:green">⚠️  **Si `img1` et `img2` sont des uint8 et qu'on fait `img1 - img2` (e.g. 10 - 15) ⇒ <span style="color:red"> UNDERFLOW!</span>**  ⚠️
+- Problème si img1 et img2 sont pas les 2 dans **[0, 1]** ou les 2 dans **[| 0, 255 |]**
+- <span style="color:green; font-size:18px">⚠️
+    **Si `img1` et `img2` sont des uint8 et qu'on fait `img1 - img2` (e.g. 10 -- 15) ⇒
+    <span style="color:red"> UNDERFLOW!
+    </span>**  ⚠️
 - Mettre `img.max()` dans psnr car ça prend direct 1 si [0, 1] et 255 si [0, 255]
+
+- <span style="color:orange; font-size:20px">**Par défaut, bosser en float !** </span>
