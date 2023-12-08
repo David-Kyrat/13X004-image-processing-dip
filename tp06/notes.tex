@@ -1,0 +1,103 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{itemize}
+\item
+  ex3: to avoid using loops consider using matrix multiplication for ex
+  3
+\item
+  ex5: Sum = 1 =\textgreater{} blurred, sum = 0 =\textgreater{} will
+  have edges (approximation of 2nd derivative?)
+
+  \[ \nabla^2{f(x,y) = \sum_{-\infty}^{\infty}{ \sum_{-\infty}^{\infty}{c_{?m}*f(x-n, y-m) }}} \]
+\item
+  bonus: scipy correlate 2d
+\end{itemize}
+
+\hypertarget{delta-function}{%
+\subsection{Delta Function}\label{delta-function}}
+
+\begin{itemize}
+\tightlist
+\item
+  Theme 7
+\item
+  P. 25 / (or 35)
+\end{itemize}
+
+\hypertarget{special-signals}{%
+\subsubsection{Special Signals}\label{special-signals}}
+
+Continuous Delta Function
+
+\begin{equation*}
+    \delta(t) = \begin{cases}
+        \infty & t = 0 \\
+        0 & t \neq 0
+    \end{cases}
+    \\ \int_{-\infty}^{\infty}{\delta(t)dt} = 1
+\end{equation*}
+
+\hypertarget{superpositions-baisis-of-delta-funbctions}{%
+\subsubsection{Superpositions baisis of
+delta-funbctions}\label{superpositions-baisis-of-delta-funbctions}}
+
+\[
+    x(n) = \sum_{k=-\infty}^{\infty}{x(k)\delta(n-k)}
+\]
+
+\end{document}
