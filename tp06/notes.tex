@@ -58,12 +58,14 @@
 \begin{itemize}
 \item
   ex3: to avoid using loops consider using matrix multiplication for ex
-  3
-\item
-  ex5: Sum = 1 =\textgreater{} blurred, sum = 0 =\textgreater{} will
+  3 ex5: Sum = 1 =\textgreater{} blurred, sum = 0 =\textgreater{} will
   have edges (approximation of 2nd derivative?)
 
   \[ \nabla^2{f(x,y) = \sum_{-\infty}^{\infty}{ \sum_{-\infty}^{\infty}{c_{?m}*f(x-n, y-m) }}} \]
+\item
+  if its 0 we are taking edges
+\item
+  if its 1 we have blurred
 \item
   bonus: scipy correlate 2d
 \end{itemize}
@@ -77,6 +79,8 @@
   Theme 7
 \item
   P. 25 / (or 35)
+\item
+  P. 14 slides
 \end{itemize}
 
 \hypertarget{special-signals}{%
@@ -92,12 +96,34 @@ Continuous Delta Function
     \\ \int_{-\infty}^{\infty}{\delta(t)dt} = 1
 \end{equation*}
 
-\hypertarget{superpositions-baisis-of-delta-funbctions}{%
-\subsubsection{Superpositions baisis of
-delta-funbctions}\label{superpositions-baisis-of-delta-funbctions}}
+\hypertarget{superpositions-basis-of-delta-functions}{%
+\subsubsection{Superpositions basis of
+delta-functions}\label{superpositions-basis-of-delta-functions}}
 
 \[
     x(n) = \sum_{k=-\infty}^{\infty}{x(k)\delta(n-k)}
 \]
+
+\hypertarget{back-to-tp}{%
+\subsection{back to tp}\label{back-to-tp}}
+
+\[
+    x(n) = \delta(n) + \delta(n-1) + \delta(n-4) \\ h(n) = \delta(n) + \delta(n-1) 
+\]
+
+\begin{verbatim}
+x = [1, 1, 0, 0, 1, ....]
+    0           4
+h = [1, 1, ...]
+\end{verbatim}
+
+convolve them
+
+\begin{verbatim}
+    x 1 1 0 0 1
+h   1 1    
+\end{verbatim}
+
+Error in photo?
 
 \end{document}

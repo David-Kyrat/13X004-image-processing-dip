@@ -24,7 +24,7 @@ Continuous Delta Function
     \\ \int_{-\infty}^{\infty}{\delta(t)dt} = 1
 \end{equation*}
 
-### Superpositions baisis of delta-funbctions
+### Superpositions basis of delta-functions
 
 $$
     x(n) = \sum_{k=-\infty}^{\infty}{x(k)\delta(n-k)}
