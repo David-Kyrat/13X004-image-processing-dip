@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+
+import numpy
+from PIL import Image
+import argparse
+
+palette = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
+
+parser = argparse.ArgumentParser(
+                    prog='Acscii Art',
+                    description='Convert an image to ASCII art',
+                    epilog='Thank you for using Acscii Art!')
+
+
+parser.add_argument('-i', '--input', required=True, type=str, nargs='?', help='Path to the image')
+parser.add_argument('-x', '--width', type=int, help='Width of the output')
+parser.add_argument('-y', '--height', type=int, help='Height of the output')
+parser.add_argument('-o', '--output', default="asciiArt.txt", type=str, help='Path to the output')
+args = parser.parse_args()
+
+
+def image_to_ascii(path, x, y, output):
+	try:
+		img = Image.open(path).convert('L')
+	except:
+		print("Can't open the image")
+		exit()
+	img_x, img_y = img.size
+	if (x and y == None):
+		img = img.resize((x, x * img_y // img_x))
+	elif x == None and y:
+		img = img.resize((y * img_x // img_y, y))
+	x, y = img.size
+	arr = numpy.asarray(img)
+	res = ""
+	max = 0
+	for x in arr:
+		for y in x:
+			if y > max:
+				max = y
+	for x in arr:
+		for y in x:
+			res += palette[round((y / max) * (len(palette) - 1))] * 3
+		res += "\n"
+	with open(output, 'w') as f:
+		f.write(res)
+
+def main():
+	input = args.input
+	output = args.output
+	x = args.width
+	y = args.height
+	image_to_ascii(input, x, y, output)
+ 
+ 
+ 
+if __name__ == "__main__":
+    main()
