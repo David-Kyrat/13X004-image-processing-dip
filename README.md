@@ -1,1 +1,1 @@
-# 13X004-image-processing
+# 13X004 - Digital Image Processing
